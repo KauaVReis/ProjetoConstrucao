@@ -90,9 +90,7 @@
                     <li class="menu-item">
                         <a href="../entradaSaida/index.php"><i class="bi bi-boxes"></i> entrada e saída dos produtos</a>
                     </li>
-                    <li class="menu-item">
-                        <a href="#"><i class="bi bi-cart-plus"></i> gestão de estoque</a>
-                    </li>
+                 
                 </ul>
             </nav>
 

@@ -70,7 +70,10 @@
             color: #333;
         }
 
-     
+        /* menu de tabelas */
+        .menu-table{
+            
+        }
         /* CONTEÚDO PRINCIPAL E SIDEBAR */
         .main-content {
             display: flex;
@@ -119,7 +122,6 @@
             background-color: #333; 
             color: white; /* Cor do texto no dashboard */
         }
-
           /* Estilos específicos para a área de Gestão de Estoque */
         .search-area {
             display: flex;

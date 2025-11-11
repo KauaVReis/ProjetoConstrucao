@@ -1,12 +1,3 @@
-<?php
-// A base PHP para a lógica de back-end fica aqui.
-// Esta seção será usada mais tarde para buscar e exibir os dados do banco.
-
-// include_once '../conexao.php'; 
-// $produtos = []; // Array que conteria os dados buscados
-// ... lógica para buscar produtos e quantidade de estoque ...
-?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -19,7 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     
-   
+    
 </head> 
  
 <body>
@@ -40,7 +31,7 @@
 
         <main class="main-content">
             <nav class="sidebar">
-               <ul>
+                <ul>
                     <li class="menu-item">
                         <a href="http://localhost/aula_PHP/ProjetoConstrucao/Tabelas/tabelaCadastro/"><i class="bi bi-tools"></i> Tabela de Cadastro</a>
                     </li>
@@ -55,20 +46,53 @@
             </nav>
 
             <section class="content-area">
-                <h1 style="color: white; margin-bottom: 20px;">Relatório Entrada e Saida</h1>
+                <h1 style="color: white; margin-bottom: 20px;">Relatório de Estoque Atual</h1>
                 
                 <div class="search-area">
                     <input type="text" placeholder="Pesquisar por Código, Produto ou Cor...">
                     <button><i class="bi bi-search"></i> Pesquisar</button>
                 </div>
                 
-                
+                <table class="table table-hover stock-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Produto</th>
+                            <th>Cor / Textura</th>
+                            <th>Peso/Litro</th>
+                            <th>Estoque Atual</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Tinta Acrílica Premium</td>
+                            <td>Branco Neve / Liso</td>
+                            <td>18 Litros</td>
+                            <td class="stock-status-cell">45</td>
+                            <td><span class="badge bg-success">Em Estoque</span></td>
+                            <td><button class="btn btn-sm btn-info"><i class="bi bi-pencil"></i> Editar</button></td>
+                        </tr>
+                        <tr class="low-stock-row">
+                            <td>2</td>
+                            <td>Argamassa AC-III</td>
+                            <td>Cinza / Granulada</td>
+                            <td>20 Kg</td>
+                            <td class="stock-status-cell low-stock">8</td>
+                            <td><span class="badge bg-danger">Baixo Estoque</span></td>
+                            <td><button class="btn btn-sm btn-info"><i class="bi bi-pencil"></i> Editar</button></td>
+                        </tr>
+                        
+                        </tbody>
+                </table>
                 
             </section>
         </main>
     </div>
 
-   <script>
+ <script>
         const logoutBtn = document.getElementById('logoutBtn');
         const userGreetingElement = document.getElementById('userGreeting');
 

@@ -21,6 +21,29 @@
         /* CABEÇALHO */
         .header {
             background-color: #d8c8c8; 
+            padding: 15px 20px;   /* =================================================== */
+        /* === ESTILOS GLOBAIS / RESET === */
+        /* =================================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: #2e2e2e; /* Cor de fundo principal escura */
+        }
+        
+        /* =================================================== */
+        /* === TELA DE GESTÃO (DASHBOARD) === */
+        /* =================================================== */
+        
+        /* CABEÇALHO */
+        .header {
+            background-color: #d8c8c8; 
             padding: 15px 20px;
             height: 80px; 
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -70,10 +93,156 @@
             color: #333;
         }
 
-        /* menu de tabelas */
-        .menu-table{
-            
+     
+        /* CONTEÚDO PRINCIPAL E SIDEBAR */
+        .main-content {
+            display: flex;
+            flex: 1; 
         }
+        .sidebar {
+            width: 250px; 
+            background-color: #555; 
+            padding-top: 20px;
+            min-height: calc(100vh - 80px); 
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .menu-item {
+            margin-bottom: 2px;
+        }
+        .menu-item a {
+            display: block;
+            padding: 12px 15px;
+            color: #fff;
+            font-size: 15px;
+            text-decoration: none;
+            transition: background-color 0.2s;
+        }
+        .menu-item a:hover {
+            background-color: #6a6a6a; 
+        }
+        /* Estilos do menu conforme imagem */
+        .sidebar ul li:nth-child(1) { background-color: #999999; }
+        .sidebar ul li:nth-child(2),
+        .sidebar ul li:nth-child(3) { background-color: #a8a8a8; }
+        
+        .menu-icon {
+            width: 30px; 
+            text-align: center;
+            margin-right: 10px;
+            font-size: 16px;
+            color: #333; 
+        }
+
+        .content-area {
+            flex: 1; 
+            padding: 20px;
+            background-color: #333; 
+            color: white; /* Cor do texto no dashboard */
+        }
+
+          /* Estilos específicos para a área de Gestão de Estoque */
+        .search-area {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            align-items: center;
+        }
+        .search-area input {
+            padding: 8px 12px;
+            border-radius: 4px;
+            border: 1px solid #555;
+            background-color: #4a4a4a;
+            color: white;
+            width: 300px;
+        }
+        .search-area button {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            background-color: #d8c8c8;
+            color: #333;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Tabela de Estoque */
+        .stock-table th, .stock-table td {
+            text-align: left;
+            vertical-align: middle;
+        }
+        .stock-table th {
+            background-color: #555;
+            color: #d8c8c8;
+        }
+        .stock-table td {
+            /* Mantém a cor do background do dashboard, ajustando para a tabela */
+            background-color: #3f3f3f; 
+            color: white;
+        }
+        
+        /* Destaque para baixo estoque (será aplicado via PHP ou JavaScript futuramente) */
+        .low-stock {
+            background-color: #f8d7da !important; /* Fundo vermelho claro */
+            color: #721c24 !important; /* Texto vermelho escuro */
+            font-weight: bold;
+        }
+        
+        .stock-status-cell {
+            font-weight: bold;
+        }
+
+            height: 80px; 
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .dashboard-logo { /* Logo menor do dashboard */
+            background-color: white;
+            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; 
+        }
+        .dashboard-logo img {
+            width: 113px;
+            border-radius: 50%; 
+            background-color: white; 
+            padding: 3px; 
+        }
+
+        .company-name {
+            font-size: 18px;
+            color: #333; 
+        }
+        .user-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .user-greeting {
+            font-size: 16px;
+            color: #333;
+            font-weight: bold;
+        }
+        .logout-icon {
+            font-size: 20px;
+            cursor: pointer;
+            color: #333;
+        }
+
+       
         /* CONTEÚDO PRINCIPAL E SIDEBAR */
         .main-content {
             display: flex;

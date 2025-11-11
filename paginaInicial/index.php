@@ -46,7 +46,7 @@
             <nav class="sidebar_menu-table">
                 <ul>
                     <li class="menu-item">
-                        <a href="http://localhost/aula_PHP/ProjetoConstrucao/Tabelas/"><i class="bi bi-table"></i>  Tabelas</a>
+                        <a href="http://localhost/aula_PHP/ProjetoConstrucao/Tabelas/tabela.php"><i class="bi bi-table"></i>  Tabelas</a>
                     </li>
             </section>
         </main>

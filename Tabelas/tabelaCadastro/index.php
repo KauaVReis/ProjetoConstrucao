@@ -40,68 +40,35 @@
 
         <main class="main-content">
             <nav class="sidebar">
-                <ul>
+               <ul>
                     <li class="menu-item">
-                        <a href="../paginainicial/index.php"><i class=" bi bi-house-door"></i> Pagina Inicial</a>
+                        <a href="http://localhost/aula_PHP/ProjetoConstrucao/Tabelas/tabelaCadastro/"><i class="bi bi-tools"></i> Tabela de Cadastro</a>
                     </li>
                     <li class="menu-item">
-                        <a href="../cadastroProduto/index.php"><i class="bi bi-person-fill"></i> Cadastro de Produtos</a>
+                        <a href="http://localhost/aula_PHP/ProjetoConstrucao/Tabelas/tabelaEntradaSaida/"><i class="bi bi-boxes"></i>Tabela de Entrada e Saida</a>
                     </li>
                     <li class="menu-item">
-                        <a href="../entradaSaida/index.php"><i class="bi bi-boxes"></i> entrada e saída dos produtos</a>
+                        <a href="http://localhost/aula_PHP/ProjetoConstrucao/Tabelas/gestaoTabela/gestaoEstoque.php"><i class="bi bi-cart-plus"></i> gestão de estoque</a>
                     </li>
                    
                 </ul>
             </nav>
 
             <section class="content-area">
-                <h1 style="color: white; margin-bottom: 20px;">Relatório de Estoque Atual</h1>
+                <h1 style="color: white; margin-bottom: 20px;">Relatório Cadatro</h1>
                 
                 <div class="search-area">
                     <input type="text" placeholder="Pesquisar por Código, Produto ou Cor...">
                     <button><i class="bi bi-search"></i> Pesquisar</button>
                 </div>
                 
-                <table class="table table-hover stock-table">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Produto</th>
-                            <th>Cor / Textura</th>
-                            <th>Peso/Litro</th>
-                            <th>Estoque Atual</th>
-                            <th>Status</th>
-                            <th>Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Tinta Acrílica Premium</td>
-                            <td>Branco Neve / Liso</td>
-                            <td>18 Litros</td>
-                            <td class="stock-status-cell">45</td>
-                            <td><span class="badge bg-success">Em Estoque</span></td>
-                            <td><button class="btn btn-sm btn-info"><i class="bi bi-pencil"></i> Editar</button></td>
-                        </tr>
-                        <tr class="low-stock-row">
-                            <td>2</td>
-                            <td>Argamassa AC-III</td>
-                            <td>Cinza / Granulada</td>
-                            <td>20 Kg</td>
-                            <td class="stock-status-cell low-stock">8</td>
-                            <td><span class="badge bg-danger">Baixo Estoque</span></td>
-                            <td><button class="btn btn-sm btn-info"><i class="bi bi-pencil"></i> Editar</button></td>
-                        </tr>
-                        
-                        </tbody>
-                </table>
+                
                 
             </section>
         </main>
     </div>
 
-    <script>
+   <script>
         const logoutBtn = document.getElementById('logoutBtn');
         const userGreetingElement = document.getElementById('userGreeting');
 
@@ -110,15 +77,22 @@
             if (userName) {
                 userGreetingElement.textContent = `olá ${userName}`;
             } else {
+                // Se não estiver logado, continua redirecionando para o login (CORRETO)
                 window.location.href = '../pagina_login/index.php';
             }
         }
         
         loadUserName(); 
 
+        // Função de Navegação (Substituindo a função de Logout)
         logoutBtn.addEventListener('click', function() {
-            localStorage.removeItem('userName');
-            window.location.href = '../pagina_login/index.php';
+            
+            // 🛑 REMOVIDO: localStorage.removeItem('userName'); 
+            // 🛑 Agora, o usuário NÃO faz logout.
+            
+            // ✅ NOVO REDIRECIONAMENTO: Vai para a página inicial
+            // Caminho: Sobe um nível (..) e entra na pasta paginainicial/
+            window.location.href = '../../paginaInicial/index.php'; 
         });
     </script>
 </body>

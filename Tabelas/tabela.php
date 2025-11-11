@@ -28,13 +28,13 @@
             <nav class="sidebar">
                 <ul>
                     <li class="menu-item">
-                        <a href="http://localhost/aula_PHP/ProjetoConstrucao/cadastroProduto/"><i class="bi bi-tools"></i> Tabela de Cadastro</a>
+                        <a href="http://localhost/aula_PHP/ProjetoConstrucao/Tabelas/tabelaCadastro/"><i class="bi bi-tools"></i> Tabela de Cadastro</a>
                     </li>
                     <li class="menu-item">
-                        <a href="http://localhost/aula_PHP/ProjetoConstrucao/entradaSaida/"><i class="bi bi-boxes"></i>Tabela de Entrada e Saida</a>
+                        <a href="http://localhost/aula_PHP/ProjetoConstrucao/Tabelas/tabelaEntradaSaida/"><i class="bi bi-boxes"></i>Tabela de Entrada e Saida</a>
                     </li>
                     <li class="menu-item">
-                        <a href="http://localhost/aula_PHP/ProjetoConstrucao/gestaoEstoque/"><i class="bi bi-cart-plus"></i> gestão de estoque</a>
+                        <a href="http://localhost/aula_PHP/ProjetoConstrucao/Tabelas/gestaoTabela/gestaoEstoque.php"><i class="bi bi-cart-plus"></i> Gestão de estoque</a>
                     </li>
                 </ul>
             </nav>
@@ -45,14 +45,11 @@
                  <main class="main-content">
             <nav class="sidebar_menu-table">
                 <ul>
-                    <li class="menu-item">
-                        <a href="http://localhost/aula_PHP/ProjetoConstrucao/cadastroProduto/"><i class="bi bi-table"></i>  Tabelas</a>
-                    </li>
             </section>
         </main>
     </div>  
 
-    <script>
+  <script>
         const logoutBtn = document.getElementById('logoutBtn');
         const userGreetingElement = document.getElementById('userGreeting');
 
@@ -61,18 +58,22 @@
             if (userName) {
                 userGreetingElement.textContent = `olá ${userName}`;
             } else {
-                // ✅ CAMINHO DE REDIRECIONAMENTO CORRIGIDO: sobe um nível e acessa pagina_login
-                window.location.href = '../paginaInicial/index.php';
+                // Se não estiver logado, continua redirecionando para o login (CORRETO)
+                window.location.href = '../pagina_login/index.php';
             }
         }
         
         loadUserName(); 
 
-        // Função de Logout
+        // Função de Navegação (Substituindo a função de Logout)
         logoutBtn.addEventListener('click', function() {
-            localStorage.removeItem('userName');
-            // ✅ CAMINHO DE REDIRECIONAMENTO CORRIGIDO
-            window.location.href = '../paginaInicial/index.php';
+            
+            // 🛑 REMOVIDO: localStorage.removeItem('userName'); 
+            // 🛑 Agora, o usuário NÃO faz logout.
+            
+            // ✅ NOVO REDIRECIONAMENTO: Vai para a página inicial
+            // Caminho: Sobe um nível (..) e entra na pasta paginainicial/
+            window.location.href = '../paginainicial/index.php'; 
         });
     </script>
 </body>
