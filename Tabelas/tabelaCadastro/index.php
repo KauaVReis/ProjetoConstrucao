@@ -55,7 +55,7 @@
             </nav>
 
             <section class="content-area">
-                <h1 style="color: white; margin-bottom: 20px;">Relatório Cadatro</h1>
+                <h1 style="color: white; margin-bottom: 20px;">Relatório Cadastro</h1>
                 
                 <div class="search-area">
                     <input type="text" placeholder="Pesquisar por Código, Produto ou Cor...">
