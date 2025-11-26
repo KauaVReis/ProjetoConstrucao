@@ -1,3 +1,8 @@
+<?php
+    session_start();
+    require_once('../conexao/conexao.php');
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -40,13 +45,13 @@
             </div>
             
             <div class="login-box">
-                <form id="cadastroForm">
+                     <form id="cadastroForm" action="" method="POST"> 
                     
-                    <input type="text" id="reg-username" placeholder="Nome Completo:" required>
-                    <input type="email" id="reg-email" placeholder="Email:" required>
-                    
-                    <input type="password" id="reg-password" placeholder="Crie uma Senha:" required>
-                    <input type="password" id="reg-confirm-password" placeholder="Confirme a Senha:" required>
+                    <input type="text" placeholder="Nome Completo:" name="nome_completo" required>
+                    <input type="email" placeholder="Email/Usuário:" name="usuario" required>
+
+                    <input type="password" placeholder="Crie uma Senha:" name="senha" required>
+                    <input type="password" name="confirmar_senha" placeholder="Confirme a Senha:" required>
                     
                     <button type="submit" class="submit-btn">Finalizar Cadastro</button>
                     
@@ -56,42 +61,54 @@
             </div>
         </div>
     </div>
-
-   <script>
-        const formulario = document.getElementById('cadastroForm');
-        const msgDiv = document.getElementById('mensagem-feedback');
-
-        formulario.addEventListener('submit', function(event) {
-            event.preventDefault(); // Não recarrega a página
-
-            const senha = document.getElementById('reg-password').value;
-            const confirmarSenha = document.getElementById('reg-confirm-password').value;
-
-            // Limpa estilos anteriores
-            msgDiv.className = ''; 
-
-            // Validação de Senha
-            if (senha !== confirmarSenha) {
-                msgDiv.textContent = "As senhas não conferem!";
-                msgDiv.classList.add('erro'); // Fica vermelho
-                msgDiv.style.display = 'block';
-                return;
-            }
-
-            // SUCESSO
-            msgDiv.textContent = "Cadastro realizado com sucesso!";
-            msgDiv.classList.add('sucesso'); // Fica verde
-            msgDiv.style.display = 'block';
-
-            // Limpa o formulário
-            formulario.reset();
-
-            // (Opcional) Faz a mensagem sumir depois de 3 segundos
-            setTimeout(() => {
-                msgDiv.style.display = 'none';
-            }, 3000);
-        });
-   </script>
 </body>
 </html>
+
+<?php
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    
+    // 1. RECEBIMENTO DOS DADOS
+    $nome_usuario = $_POST['nome_completo']; 
+    $usuario = $_POST['usuario'];               
+    $senha = $_POST['senha'];
+    $confirmar_senha = $_POST['confirmar_senha'];
+
+    // 2. LÓGICA DE VERIFICAÇÃO DE SENHA
+    if ($senha !== $confirmar_senha) {
+        echo "<script>alert('As senhas não coincidem. Por favor, tente novamente.');</script>";
+        exit;
+    }
+    try {
+        // CORREÇÃO 1: A query deve ter APENAS interrogações (?), sem aspas e sem variáveis.
+        $sql = "INSERT INTO saep_db2.usuarios (nome_usuario, usuario, senha) 
+                VALUES (?, ?, ?)"; 
+
+        $stmt = $pdo->prepare($sql);
+
+        // CORREÇÃO 2: Removemos todos os 'bindParam'. Não precisa deles aqui.
+
+        // CORREÇÃO 3: Passamos as variáveis corretas no execute.
+        // Atenção: Troquei '$email' (que não existia) por '$usuario'.
+        $executou = $stmt->execute([
+            $nome_usuario,          // Substitui a 1ª interrogação
+            $usuario,               // Substitui a 2ª interrogação
+            $senha    // Substitui a 3ª interrogação
+        ]);
+
+        if ($executou) {
+            echo "<script>
+                    alert('✅ Usuário cadastrado com sucesso!');
+                    window.location.href = '../paginaInicial/index.php';
+                  </script>";
+            exit; 
+        } else {
+            echo "<script>alert('❌ Falha ao cadastrar. Não foi possível inserir no banco.');</script>";
+        }
+
+    } catch (\PDOException $e) {
+        echo "<script>alert('🚫 Erro de sistema: " . $e->getMessage() . "');</script>";
+    }
+}
+?>
 

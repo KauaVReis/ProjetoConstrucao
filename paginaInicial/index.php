@@ -1,3 +1,8 @@
+<?php
+    session_start();
+    require_once("../conexao/conexao.php");
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -19,7 +24,7 @@
                 <span class="company-name">Constru Casa</span>
             </div>
             <div class="user-area">
-                <span class="user-greeting" id="userGreeting">olá usuário</span>
+                <span class="user-greeting" id="userGreeting"> <?php echo "Olá, " . $_SESSION["nome_usuario"];?></span>
               <i class="bi bi-door-open-fill" id="logoutBtn"></i> 
             </div>
         </header>
