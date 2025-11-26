@@ -6,11 +6,31 @@
     <title>Constru Casa - Cadastro</title>
     
     <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        #mensagem-feedback {
+            margin-top: 15px;
+            text-align: center;
+            font-weight: bold;
+            display: none; /* Começa invisível */
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .sucesso {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .erro {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
 </head>
 <body>
     
     <div id="cadastro-screen">
-        
         <div class="login-container"> 
             
             <span class="botao-fechar" onclick="history.back()">&times;</span> 
@@ -29,6 +49,8 @@
                     <input type="password" id="reg-confirm-password" placeholder="Confirme a Senha:" required>
                     
                     <button type="submit" class="submit-btn">Finalizar Cadastro</button>
+                    
+                    <div id="mensagem-feedback"></div>
     
                 </form>
             </div>
@@ -36,30 +58,39 @@
     </div>
 
    <script>
-        // 1. Seleciona os elementos do HTML
-        const logoutBtn = document.getElementById('logoutBtn');
-        const userGreetingElement = document.getElementById('userGreeting');
+        const formulario = document.getElementById('cadastroForm');
+        const msgDiv = document.getElementById('mensagem-feedback');
 
-        // 2. DEFINE a função (Cria a receita)
-        function loadUserName() {
-            const userName = localStorage.getItem('userName');
-            
-            if (userName) {
-                userGreetingElement.textContent = `olá ${userName}`;
-            } 
-            // OBS: Tirei o 'else' com redirecionamento para parar de recarregar a página sozinha
-        }
-        
-        // 3. EXECUTA a função
-        loadUserName(); 
+        formulario.addEventListener('submit', function(event) {
+            event.preventDefault(); // Não recarrega a página
 
-        // 4. Configura o botão de "Sair/Voltar"
-        if (logoutBtn) {
-            logoutBtn.addEventListener('click', function() {
-                // Certifique-se que esse arquivo '../tabela.php' existe mesmo nesse local
-                window.location.href = '../pagina_login/index.php'; 
-            });
-        }
-    </script>
+            const senha = document.getElementById('reg-password').value;
+            const confirmarSenha = document.getElementById('reg-confirm-password').value;
+
+            // Limpa estilos anteriores
+            msgDiv.className = ''; 
+
+            // Validação de Senha
+            if (senha !== confirmarSenha) {
+                msgDiv.textContent = "As senhas não conferem!";
+                msgDiv.classList.add('erro'); // Fica vermelho
+                msgDiv.style.display = 'block';
+                return;
+            }
+
+            // SUCESSO
+            msgDiv.textContent = "Cadastro realizado com sucesso!";
+            msgDiv.classList.add('sucesso'); // Fica verde
+            msgDiv.style.display = 'block';
+
+            // Limpa o formulário
+            formulario.reset();
+
+            // (Opcional) Faz a mensagem sumir depois de 3 segundos
+            setTimeout(() => {
+                msgDiv.style.display = 'none';
+            }, 3000);
+        });
+   </script>
 </body>
 </html>
